@@ -42,5 +42,7 @@ data class Question(
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "question_id")
   var questionId: Int,
-  val text: String
+  val text: String,
+  val difficulty: String = "0",
+  val category: String = "Android"
 )

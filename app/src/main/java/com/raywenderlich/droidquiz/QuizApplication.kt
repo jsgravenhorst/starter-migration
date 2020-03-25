@@ -44,6 +44,12 @@ class QuizApplication : Application() {
   override fun onCreate() {
     super.onCreate()
     database = Room.databaseBuilder(this, QuizDatabase::class.java, "question_database")
-        .build()
+      .addMigrations(
+        QuizDatabase.MIGRATION_1_TO_2,
+        QuizDatabase.MIGRATION_2_TO_3,
+        QuizDatabase.MIGRATION_3_TO_4,
+        QuizDatabase.MIGRATION_1_TO_4
+      )
+      .build()
   }
 }

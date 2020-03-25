@@ -34,10 +34,21 @@ package com.raywenderlich.droidquiz.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import com.raywenderlich.droidquiz.data.db.migration.Migration1To2
+import com.raywenderlich.droidquiz.data.db.migration.Migration1To4
+import com.raywenderlich.droidquiz.data.db.migration.Migration2To3
+import com.raywenderlich.droidquiz.data.db.migration.Migration3To4
 import com.raywenderlich.droidquiz.data.model.Answer
 import com.raywenderlich.droidquiz.data.model.Question
 
 @Database(entities = [(Question::class), (Answer::class)], version = 1)
 abstract class QuizDatabase : RoomDatabase() {
+  companion object {
+    val MIGRATION_1_TO_2 = Migration1To2()
+    val MIGRATION_2_TO_3 = Migration2To3()
+    val MIGRATION_3_TO_4 = Migration3To4()
+    val MIGRATION_1_TO_4 = Migration1To4()
+  }
   abstract fun questionsDao(): QuestionDao
 }
